@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "weatherin",
+    "slug": "weatherin",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "weatherin"
+}
