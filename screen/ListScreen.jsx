@@ -102,6 +102,24 @@ const ListScreen = ({ route }) => {
     }
   },[latLng.lat, latLng.lng])
   const navigation = useNavigation();
+
+  const image = (weather) =>
+  weather == "Clouds"
+    ? require("../assets/cloud.png")
+    : weather === "Clear"
+    ? require("../assets/clear.jpg")
+    : weather === "Thunderstorm"
+    ? require("../assets/thunderstorm.jpg")
+    : weather === "Drizzle"
+    ? require("../assets/drizzle.jpg")
+    : weather === "Rain"
+    ? require("../assets/rain.jpg")
+    : weather === "Snow"
+    ? require("../assets/snow.jpg")
+    : data?.weather?.[0].icon === "50d"
+    ? require("../assets/atmosphere.jpg")
+    : require("../assets/cloud.png");
+
   return (
     <>
       <View
@@ -147,7 +165,7 @@ const ListScreen = ({ route }) => {
               >
                 <View style={{ height: 200 }}>
                   <Image
-                    source={require("../assets/rain.jpg")}
+                    source={image(e.weather?.[0].main)}
                     style={{
                       resizeMode: "contain",
                       width: "100%",
@@ -169,7 +187,7 @@ const ListScreen = ({ route }) => {
                     }}
                   >
                     <TextComponent size={22} color="#8AFFC0">
-                      {e?.weather?.[0].main}
+                      {e?.weather?.[0].description}
                     </TextComponent>
                   </View>
                 </View>
@@ -221,7 +239,7 @@ const ListScreen = ({ route }) => {
               >
                 <View style={{ height: 200 }}>
                   <Image
-                    source={require("../assets/rain.jpg")}
+                    source={image(e.weather?.[0].main)}
                     style={{
                       resizeMode: "contain",
                       width: "100%",
@@ -243,7 +261,7 @@ const ListScreen = ({ route }) => {
                     }}
                   >
                     <TextComponent size={22} color="#8AFFC0">
-                      {e?.weather?.[0].main}
+                      {e?.weather?.[0].description}
                     </TextComponent>
                   </View>
                 </View>

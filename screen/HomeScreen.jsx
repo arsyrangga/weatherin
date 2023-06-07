@@ -27,6 +27,7 @@ const HomeScreen = () => {
 
   const getLocation = async () => {
     try {
+      setLoading(true);
 
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
@@ -48,9 +49,13 @@ const HomeScreen = () => {
       } else {
         getLocation()
       }
+      setLoading(false);
+
     } catch (error) {
       const { code, message } = error;
       console.warn(code, message);
+      setLoading(false);
+
     }
   };
   
@@ -154,7 +159,7 @@ const HomeScreen = () => {
             }}
           >
             <TextComponent size={22} color="#8AFFC0">
-              {data?.weather?.[0].main}
+              {data?.weather?.[0].description}
             </TextComponent>
             <TextComponent size={22}>{data?.temp} C</TextComponent>
           </View>
